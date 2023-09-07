@@ -25,4 +25,30 @@ int Main() {
 
     cout << "1: Register\n2: Login\nYour Choice:";
     cin >> choice;
+
+    if (choice == 1) {
+        string username, password;
+
+        cout << "Select a username: "; cin >> username;
+        cout << "Select a password: "; cin >> password;
+
+        ofstream file;
+        file.open("data\\" + username + ".txt");
+        file << username << endl << password;
+        file.close();
+
+        Main();
+    } else if (choice == 2) {
+        bool status = IsLoggedIn();
+        if (!status) {
+            cout << "False Login!" << endl;
+            system("PAUSE");
+            return 0;
+        } else {
+            cout << "You are succefully logged in" << endl;
+            system("PAUSE");
+            return 1;
+        };
+
+    }
 }
